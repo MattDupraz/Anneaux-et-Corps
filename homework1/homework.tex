@@ -1,0 +1,144 @@
+\documentclass[french]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath, amsfonts, amssymb}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\hF}{\hat{\F}}
+\newcommand{\KK}{\K[[t]]\times(\K[[t]]\setminus\{0\})}
+\newcommand{\KKL}{\K((t))\times(\K((t))\setminus\{0\})}
+\newcommand{\ol}{\overline}
+
+\title{Série 1 - Exercice à rendre}
+\author{Matthew Dupraz}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1.}
+
+Soit $f(t) = \sum_{i=0}^\infty a_i t^i \in \K[[t]]$.
+
+Supposons que $f$ soit inversible, alors il existe
+$g(t) = \sum_{i=0}^\infty b_i t^i \in \K[[t]]$ tel que
+$f(t)g(t) = 1$. Ainsi en particulier $f(0)g(0) = a_0 b_0 = 1$, 
+ce qui implique $a_0 \neq 0$.
+
+Sinon, supposons que $a_0 \neq 0$, alors on définit $b_k$ récursivement:
+\begin{align*}
+	b_0 &= a_0^{-1} \\
+	b_k &= -a_0^{-1}\sum_{i=1}^{k}a_{k}b_{k - i}
+\end{align*}
+Alors on a que pour tout $k \in \N$, $\sum_{i=0}^k a_i b_{k-i} = 0$.
+En particulier
+\begin{equation*}
+	\sum_{i=0}^\infty a_i t^i \sum_{j=0}^\infty b_j t^j
+	= \sum_{k = 0}^\infty \sum_{i=0}^k a_i b_{k-i} = 1
+\end{equation*}
+Donc $f$ est inversible
+
+\subsection*{2.}
+
+$\K((t))$ est un anneau commutatif intègre, donc $\K[[t]] \subset \K((t))$
+est aussi un anneau commutatif intègre.
+
+Alors soit $\F$ le corps des fractions de $\K[[t]]$ et $\hat{\F}$ le corps des
+fractions de $\K((t))$, on a alors que
+$\F = \KK / \sim$  et
+$\hF = \KKL / \sim$ où
+$\sim$ est la relation d'équivalence telle que pour tout 
+$(f(t), g(t)), (f'(t), g'(t)) \in \KKL$,
+\begin{equation*}
+	(f(t), g(t)) \sim (f'(t), g'(t)) \iff f(t)g'(t) = f'(t)g(t)
+\end{equation*}
+
+Soit $(f(t), g(t)) \in \KKL$ tel que $f(t) \neq 0$,
+on va montrer qu'il existe 
+$h(t) \in \K[[t]]$ et $k \in \Z$ tel que
+$(f(t), g(t)) \sim (h(t), t^k)$ et $h(0) \neq 0$.
+Soient 
+$r = \min\{k \in \N, a_k \neq 0\}, s = \min\{k \in \N, b_k \neq 0\}$ où $a_k$ et
+$b_k$ sont les coefficients de $t_k$ des séries $f(t)$ et $g(t)$.
+$r, s$ existent forcément, car sinon $f(t)$ et $g(t)$ seraient nuls.
+Ainsi on peut écrire $f(t) = p(t)t^r$ et $g(t) = q(t)t^s$ où
+$p(0) \neq 0$ et $q(0) \neq 0$. Puisque $q(0) \neq 0$, $q(t)$ est inversible
+et donc 
+\begin{equation*}
+	p(t)q^{-1}(t)g(t) = p(t)t^{s} = f(t)t^{s-r} 
+\end{equation*}
+Ainsi on a que $(f(t), g(t)) \sim (p(t)q^{-1}(t), t^{s-r})$ on remarque que 
+$p(0)q^{-1}(0) \neq 0$. Ainsi si on pose $h(t) = p(t)q^{-1}(t)$ et $k = s-r$,
+on a le résultat voulu.
+
+Donc pour tout $\ol{(f(t), g(t))} \in \hF \setminus \{\ol{(0, 1)}\}$
+il existe un $(h(t), t^k) \in \KKL$ tel que
+$\ol{(f(t), g(t))} = \ol{(h(t), t^k)}$. On va montrer que cette représentation
+est unique:
+
+Soient $(f(t), t^r) \sim (g(t), t^s) \in \KKL$ tels que
+$f(0) \neq 0$ et $g(0) \neq 0$,
+alors $f(t)t^s = g(t)t^r$.
+Si $r = s$, $f(t) = g(t)$ et donc $(f(t), t^r) = (g(t), t^s)$, sinon s.p.g.
+supposons que $r > s$. On a alors que $f(t) = g(t)t^{r-s}$.
+Si on évalue les deux côtés en zéro, on obtient $f(0) = 0$ ce qui est absurde.
+Ainsi forcément $(f(t), t^r) = (g(t), r^s)$.
+
+On pose alors $\hat{\phi}: \hF \to \K((t))$ définie par 
+$\hat{\phi}(\ol{(h(t), t^k)}) = h(t)t^{-k}$ pour tous
+$\ol{(h(t), t^k)} \in \hF\setminus\{\ol{(0, 1)}\}$ et
+$\hat{\phi}(\ol{(0, 1)}) = 0$. On vérifie alors que $\hat{\phi}$ est un
+homomorphisme d'anneaux. On a que $\hat\phi (\ol{(1, 1)}) = 1$ et
+$\hat\phi (\ol{(0, 1)}) = 0$. 
+Soeint $\ol{(f(t), t^r)}, \ol{(g(t), t^s)} \in \hF$,
+Si $\ol{(f(t), t^r)} = \ol{(0, 1)}$, ou 
+$\ol{(g(t), t^s)} = \ol{(0, 1)}$, alors les identités pour l'addition et
+la multiplication sont triviallement vérifiées. Supposons alors que
+$\ol{(f(t), t^r)} \neq \ol{(0, 1)}$ et 
+$\ol{(g(t), t^s)} \neq \ol{(0, 1)}$, alors si on pose 
+$l = \min \{r, s\}$ on a que
+\begin{align*}
+	\hat\phi(\ol{(f(t), t^r)} + \ol{(g(t), t^s)}) &=
+	\hat\phi(\ol{(f(t)t^s + g(t)t^r, t^{r + s})})\\
+	&= \hat\phi(\ol{(f(t)t^{s - l} + g(t)t^{r - l}, t^{r + s - l})})\\
+	&= (f(t)t^{s-l} + g(t)^{r-l})t^{l - r - s} \\
+	&= f(t)t^{-r} + g(t)t^{-s} \\
+	&= \hat\phi(\ol{(f(t), t^r)}) + \hat\phi(\ol{(g(t), t^s)})
+\end{align*}
+
+Ainsi $\hat\phi$ préserve bien les additions. Finalement,
+\begin{align*}
+	\hat\phi(\ol{(f(t), t^r)} \cdot \ol{(g(t), t^s)}) &=
+	\hat\phi(\ol{(f(t)g(t), t^{r+s})}) \\
+	&= f(t)g(t)t^{-r-s}\\
+	&= f(t)t^{-r}\cdot g(t)^{-s}\\
+	&= \hat\phi(\ol{(f(t), t^r)})\cdot \hat\phi(\ol{(g(t), t^s)})	
+\end{align*}
+Donc $\hat\phi$ est bien un homomorphisme d'anneaux.
+
+Soit $\iota: \F \to \hF$ l'homomorphisme inclusion, et posons
+$\phi = \hat\phi \circ \iota$, alors $\phi$ est un homomorphisme d'anneaux. On
+va montrer que $\phi$ est bijective:
+
+Soient $\ol{(f(t), t^r)}$ et $\ol{(g(t), t^s)} \in \F$ t.q. 
+$\phi(\ol{(f(t), t^r)}) = \phi(\ol{(g(t), t^s)})$. Alors
+$f(t)t^{-r} = g(t)t^{-s}$, ce qui implique que $f(t)t^s = g(t)t^r$, mais alors
+par définition de la relation d'équivalence,
+$\ol{(f(t), t^r)} = \ol{(g(t), t^s)}$. Ainsi $\phi$ est injective.
+
+Soit $\sum_{i = n}^\infty a_i t^i \in \K((t))$ une série de Laurent, alors
+\begin{equation*}
+\sum_{i = n}^\infty a_i t^i = t^{-n}\sum_{i = 0}^\infty a_{i - n} t^i
+= \phi(\ol{(\sum_{i=0}^\infty a_{i-n}t^i, t^n)})
+\end{equation*}
+Ainsi $\phi$ est surjective et donc un isomorphisme.
+
+On conclut que $\F \cong \K((t))$.
+
+\end{document}
