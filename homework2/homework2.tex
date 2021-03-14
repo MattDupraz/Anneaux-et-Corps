@@ -1,0 +1,117 @@
+\documentclass[french]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath, amssymb, amsfonts}
+
+
+\newcommand{\ev}{\mathrm{ev}}
+
+\title{Série 1 - Exercice à rendre}
+\author{Matthew Dupraz}
+
+\begin{document}
+
+\maketitle
+
+Soit $K$ un corps et $\phi: K[x_1, x_2, x_3, x_4] \to K[t]$, l'homomorphisme
+d'anneaux donné par $\phi (x_i) = t^i$ pour tout $i \in \{1, \dots, 4\}$.
+On va montrer que $\ker \phi = (x_4 - x_2^2, x_3 - x_1x_2, x_2 - x_1^2)$.
+
+On définit les homomorphismes suivants:
+\begin{itemize}
+	\item $\phi_1:K[x_1] \to K[t], \phi_1 = \ev_t$
+	\item $\phi_2: K[x_1, x_2] \to K[x_1], \phi_2 = \ev_{x_1^2}$
+	\item $\phi_3: K[x_1, x_2, x_3] \to K[x_1, x_2], \phi_3 = \ev_{x_1x_2}$
+	\item $\phi_4: K[x_1, x_2, x_3, x_4] \to K[x_1, x_2, x_3],
+		\phi_4 = \ev_{x_2^2}$
+\end{itemize}
+
+Il est alors facile à voir que $\phi = \phi_1 \circ \phi_2 \circ \phi_3 \circ
+\phi_4$ et ainsi $\ker \phi = \ker \phi_1 \circ \phi_2 \circ \phi_3 \circ
+\phi_4$. On définit de plus $\Phi_i = \phi_1 \circ \dots \circ \phi_i$ p.t.
+$i \in \{1, \dots, 4\}$.
+
+On a vu dans l'exemple 1.4.10, que pour un anneau commutatif
+$A$, si $\ev_a: A[t] \to A$ est l'application évaluation en $a \in A$,
+on a que $\ker\ev_a = (t - a) \subset A[t]$. On va utiliser ce fait plusieurs
+fois dans ce qui suit.
+
+Il est facile à voir que $\ker \phi_1 = \{0\}$.
+En suite $\ker\Phi_2 = \ker\phi_1\circ\phi_2 =
+\phi_2^{-1}(\ker\phi_1) = \phi_2^{-1}(\{0\})
+= \ker\phi_2 = \ker\ev_{x_1^2} = (x_2 - x_1^2) \subset K[x_1, x_2]$. 
+
+On calcule $\ker \Phi_3$:
+\begin{align*}
+	\ker\Phi_3 &= \ker \Phi_2\circ\phi_3\\
+	&= \phi_3^{-1}(\ker\Phi_2)\\
+	&= \phi_3^{-1}((x_2 - x_1^2))\\
+	&= \{p \in K[x_1, x_2, x_3]: \phi_3(p) \in (x_2 - x_1^2)\}
+\end{align*}
+
+On a que pour $p \in \ker \Phi_3$,
+$\phi_3(p) \in (x_2 - x_1^2)$. En d'autre termes il existe $q \in K[x_1, x_2]$
+tel que $\phi_3(p) = q(x_2 - x_1^2)$. On peut voir $q$ et
+$x_2 - x_1^2$ comme des polynômes constants dans $K[x_1, x_2, x_3]$, ainsi on a
+$\phi_3(q) = q$ et $\phi_3(x_2 - x_1^2) = x_2 - x_1^2$.
+Donc on en déduit que $\phi_3(p) = \phi_3(q(x_2- x_1^2))$ et ainsi
+$\phi_3(p - q(x_2 - x_1^2)) = 0$.
+En d'autres termes, $p - q(x_2 - x_1^2) \in \ker\phi_3 = (x_3 - x_1 x_2)$, 
+ainsi $p \in (x_2 - x_1^2) + (x_3 - x_1x_2) = (x_3 - x_1x_2, x_2 - x_1^2)$.
+Ainsi $\ker \Phi_3 \subset (x_3 - x_1x_2, x_2 - x_1^2)$.
+
+Pour tous $p(x_3 - x_1x_2) + q(x_2 - x_1^2) \in (x_3-x_1x_2, x_2 - x_1^2)
+\subset K[x_1, x_2, x_3]$, on a que
+\begin{align*}
+\Phi_3(p(x_3 - x_1x_2) + q(x_2 - x_1^2)) &=
+\Phi_3(p)\Phi_3(x_3 - x_1x_2) + \Phi_3(q)\Phi_3(x_2 - x_1^2)\\
+&= \Phi_3(q)(t^3 - t^1t^2) + \Phi_3(q)(t^2 - t^2)\\
+&= 0.
+\end{align*}
+Ainsi $p(x_3 - x_1x_2) + q(x_2 - x_1^2) \in \ker\Phi_3$.
+On conclut donc que $\ker \Phi_3 = {(x_3 - x_1x_2, x_2 - x_1^2)}$.
+
+Finalement, on calcule $\ker \phi = \ker\Phi_4$:
+\begin{align*}
+	\ker\Phi_4 &= \ker \Phi_3\circ\phi_4\\
+	&= \phi_4^{-1}(\ker\Phi_3)\\
+	&= \phi_4^{-1}((x_3 - x_1x_2, x_2 - x_1^2))\\
+	&= \{p \in K[x_1, x_2, x_3, x_4]: \phi_3(p) \in (x_3 - x_1x_2, x_2 - x_1^2)\}
+\end{align*}
+
+On a que pour $p \in \ker \Phi_4$, $\phi_4(p) \in (x_3 - x_1x_2, x_2 - x_1^2)$.
+En d'autres termes il existe $q, r \in K[x_1, x_2, x_3]$ tels que
+\begin{equation*}
+	\phi_4(p) = q(x_3 - x_1x_2) + r(x_2 - x_1^2)
+\end{equation*}
+Si on voit $q, r, x_3 - x_1x_2, x_2 - x_1^2$ comme des polynômes constants dans
+$K[x_1, x_2, x_3, x_4]$, on a que
+\begin{equation*}
+	\phi_4(p) = \phi_4(q(x_3 - x_1x_2) + r(x_2 - x_1^2))
+\end{equation*}
+et donc
+\begin{equation*}
+	\phi_4(p - q(x_3 - x_1x_2) - r(x_2 - x_1^2)) = 0
+\end{equation*}
+On a alors que $p - q(x_3 - x_1x_2) - r(x_2 - x_1^2) \in \ker\phi_3 = 
+(x_4 - x_2^2)$.
+Ceci implique que $p \in (x_4 - x_2^2) + (x_3 - x_1x_2) + (x_2 - x_1^2) = 
+(x_4 - x_2^2, x_3 - x_1x_2, x_2 - x_1^2)$.
+Ainsi $\ker\Phi_4 \subset (x_4 - x_2^2, x_3 - x_1x_2, x_2 - x_1^2)$.
+
+Soit $p(x_4 - x_2^2) + q(x_3 - x_1x_2) + r(x_2 - x_1^2) \in
+(x_4 - x_2^2, x_3 - x_1x_2, x_2 - x_1^2)$, alors on a que
+\begin{align*}
+	\Phi_4(p(x_4 - x_2^2)) &= \Phi_4(p)(t^4 - (t^2)^2) = 0\\
+	\Phi_4(q(x_3 - x_1x_2)) &= \Phi_4(q)(t^3 - t^1t^2) = 0\\
+	\Phi_4(r(x_2 - x_1^2)) &= \Phi_4(r)(t^2 - (t^1)^2) = 0\\
+\end{align*}
+d'où $p(x_4 - x_2^2) + q(x_3 - x_1x_2) + r(x_2 - x_1^2) \in \ker\Phi_4$.
+
+On conclut alors que $\ker \phi = \ker \Phi_4 = (x_4 - x_2^2, x_3 - x_1x_2, x_2
+- x_1^2)$.
+
+\end{document}
