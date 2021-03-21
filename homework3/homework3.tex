@@ -1,0 +1,120 @@
+\documentclass[french]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath, amssymb, amsfonts}
+
+\newcommand{\dx}{\frac{\partial}{\partial x}}
+\newcommand{\ls}{\left[}
+\newcommand{\rs}{\right]}
+\newcommand{\N}{\mathbb{N}}
+
+\title{Série 3 - Exercice à rendre}
+\author{Matthew Dupraz}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\item Soient $F, G, H \in D(K[x]), \lambda \in K$, alors
+		\begin{equation*}
+			[F, G+\lambda H] = F \circ (G + \lambda H)
+			- (G + \lambda H) \circ F
+		\end{equation*}
+		Puisque $F$ est $K$-linéaire, $F\circ(G + \lambda H) = 
+		F \circ G + \lambda F \circ H$.
+		Ainsi
+		\begin{align*}
+			[F, G + \lambda H] &= F\circ G + \lambda F\circ H
+			- G \circ F - \lambda H \circ F\\
+			&= [F, G] + \lambda [F, H].
+		\end{align*}
+		De plus, on a que $[F, G] = F\circ G - G\circ F = -[G, F]$,
+		donc la forme est anti-symmétrique.
+		Donc
+		\begin{align*}
+			[F + \lambda G, H] &= -[H, F + \lambda G]\\
+			&= -[H, F] - \lambda[H, G]\\
+			&= [F, H] + \lambda[G, H],
+		\end{align*}
+		ce qui implique que la forme est bien bilinéaire.
+	\item Ceci découle de la partie $3$, car celle ci implique que
+		\begin{equation*}
+			\ls\dx, m_x\rs	= \ls\dx, m_{x^1}\rs = 1\cdot m_{x^0} = m_1
+		\end{equation*}
+	\item Soit $j \in \N$, alors
+		\begin{align*}
+			\ls \dx, m_{x^j}\rs(1) &= \dx \circ m_{x^j}(1) - m_{x^j}\circ\dx(1)\\
+			&= \dx(x^j) - m_{x^j}(0) \\
+			&= j x^{j - 1} = j \cdot m_{x^{j-1}}(1)
+		\end{align*}
+		Soit $i\in \N$, alors
+		\begin{align*}
+			\ls \dx, m_{x^j}\rs(x^i) &= \dx \circ m_{x^j}(x^i)
+			- m_{x^j}\circ\dx(x^i)\\
+			&= \dx \circ (x^{i + j}) - m_{x^j}(ix^{i-1})\\
+			&= (i + j)x^{i + j - 1} - ix^{i + j - 1}\\
+			&= jx^{i + j - 1} = j\cdot m_{x^j-1} (x^i)
+		\end{align*}
+		Puisque $1, x^1, x^2, \dots$ forment une base de $K[x]$, on a alors que
+		pour tout $F \in K[x]$, par linéarité de $\ls\dx, m_{x^j}\rs$,
+		\begin{equation*}
+			\ls\dx, m_{x^j}\rs(F) = j\cdot m_{x^{j-1}}(F)
+		\end{equation*}
+		en particulier, 
+		\begin{equation*}
+			\ls\dx, m_{x^j}\rs = j\cdot m_{x^{j-1}} = m_{\dx(x^j)}
+		\end{equation*}
+
+	\item
+		Soit $k \in K$, alors on a que
+		\begin{equation*}
+			\ls \dx, m_k \rs(1) = \dx \circ m_k (1) - m_k\circ\dx(1) = 0,
+		\end{equation*}
+		et pour tous $i \in \N$,
+		\begin{align*}
+			\ls \dx, m_k \rs(x^i) &= \dx \circ m_k (x^i)
+			- m_k\circ\dx(x^i)\\
+			&= \dx(k\cdot x^i) - k\cdot i\cdot x^{i - 1}\\
+			&= 0
+		\end{align*}
+		et donc $\ls \dx, m_k \rs = m_0 = m_{\dx(1)}$.
+		Soit alors $F = \sum_{i=0}^n k_ix^i \in K[x]$, on a alors que
+		p.t. $G \in K[x]$,
+		\begin{align*}
+			\ls\dx, m_F\rs(G) &= \dx\circ m_F(G) - m_F \circ\dx(G)\\
+			&= \dx(F\cdot G) - F\cdot \dx(G)\\
+			&= \dx\left(\sum_{i=0}^n k_ix^i \cdot G\right)
+			-  \sum_{i=0}^n k_ix^i \cdot \dx(G)\\
+			&= \sum_{i=0}^n \dx\left(k_ix^i \cdot G\right)
+			-  \sum_{i=0}^n k_ix^i \cdot \dx(G)\\
+			&= \sum_{i=0}^n k_i \left(
+			\dx(x^i \cdot G) - x^i \cdot \dx(G)\right)\\
+			&= \sum_{i=0}^n k_i \left(
+			\dx\circ m_{x^i}(G) - m_{x^i} \circ \dx(G)\right)\\
+			&= \sum_{i=0}^n k_i \left(
+			\ls \dx, m_{x^i}\rs(G)\right)\\
+		\end{align*}
+		On a par la partie $3$ et par ce qu'on a démontré plus haut que
+		p.t. $i\in \N\cup\{0\}$, on a que 
+		$\ls \dx, m_{x^i} \rs = m_{\dx(x^i)}$.
+		On peut alors écrire 
+		\begin{align*}
+			\sum_{i=0}^n k_i \left(
+			\ls \dx, m_{x^i}\rs(G)\right) &= 
+			\sum_{i=0}^n k_i \cdot \dx(x^i) \cdot G\\
+			&= \dx\left(\sum_{i=0}^nk_ix^i\right)\cdot G\\
+			&= m_{\dx(F)}(G)
+		\end{align*}
+		et donc on peut conclure que 
+		\begin{equation*}
+			\ls \dx, m_F \rs = m_{\dx(F)} \in D_{\leq 0}(K[x])
+		\end{equation*}
+		et donc finalement $\dx \in D_{\leq 1} (K[x])$
+\end{enumerate}
+
+
+\end{document}
