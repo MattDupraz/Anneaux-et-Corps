@@ -1,0 +1,134 @@
+\documentclass[french]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath, amssymb, amsfonts}
+
+\newcommand{\dx}{\frac{\partial}{\partial x}}
+\newcommand{\mdx}[1]{\left(\frac{\partial}{\partial x}\right)^{#1}}
+\newcommand{\DK}[1]{D_{\leq #1} (K[x])}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\lie}[2]{\left[#1, #2\right]}
+
+\title{Série 4 - Exercice à rendre}
+\author{Matthew Dupraz}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\item Soit $j \in \N$, alors
+		\begin{equation*}
+			\lie{\theta}{m_x}(x^{j-1}) = \theta(x^j) - x\theta(x^{j-1})\\
+		\end{equation*}
+		et donc
+		\begin{align*}
+			\theta(x^j) &= x\theta(x^{j-1}) + \lie{\theta}{m_x}(x^{j-1})\\
+			&= x\theta(x^{j-1}) + \lie{\theta'}{m_x}(x^{j-1})\\
+			&= x\theta(x^{j-1}) + \theta'(x^j) - x\theta'(x^{j - 1})\\
+			&= \theta'(x^j) + x(\theta(x^{j-1}) - \theta'(x^{j-1}))
+		\end{align*}
+		On peut alors écrire en répétant le raisonnement pour $j-1$ etc.
+		\begin{align*}
+			\theta(x^j) - \theta'(x^j)
+			&= x(\theta(x^{j-1}) - \theta'(x^{j-1}))\\
+			&= x^2(\theta(x^{j-2}) - \theta'(x^{j-2}))\\
+			&~\vdots\\
+			&= x^j(\theta(x^0) - \theta'(x^0))\\
+			&= x^j(\theta(1) - \theta'(1))\\
+		\end{align*}
+		Ainsi $(\theta - \theta')(x^j) = m_{\theta(1) - \theta'(1)}(x^j)$ pour
+		tous $j \in \N$. Pour $j = 0$ c'est aussi (triviallement) vrai.
+		Donc par linéarité des $\theta, \theta'$, on déduit que p.t. $p\in K[x]$
+		$(\theta - \theta') = m_{\theta(1) - \theta'(1)}(p)$ et donc
+		$\theta' \equiv \theta +  m_{\theta'(1) - \theta(1)}$.
+	\item Soit $\theta \in D(K[x])$ t.q. $\lie{\theta}{m_x} = i\mdx{i-1}$,
+		alors par l'exercice 6, $i\mdx{i-1} = \lie{\mdx{i}}{m_x}$ et donc par
+		la partie 1, $\theta = \mdx{i} + m_\lambda$ pour un certain $\lambda \in
+		K[x]$
+	\item
+		Posons
+		\begin{equation*}
+			E_s := \left\{\sum_{i=0}^s m_{p_i(x)}\mdx{i} \Big|~p_i(x) \in
+			K[x]\right\}~~\forall s \geq 0
+		\end{equation*}
+		On va alors montrer que $\DK{s} = E_s$.
+		
+		Pour montrer que $E_s \subset \DK{s}$, on va faire une série de
+		simplifications. Puisque
+		$\DK{s}$ est stable par addition, et que
+		$\DK{0} \subset \DK{1} \subset \dots$, il suffit
+		de montrer que pour tout $p(x) \in K[x]$, $i\in \N_0$,
+		\begin{equation*}
+			m_{p(x)}\mdx{i} \in \DK{i}
+		\end{equation*}
+		De nouveau puisque $\DK{i}$ est stable par addition, et qu'on peut écrire
+		$m_{p(x)}$ comme une combinaison linéaire des $m_{x^j}, j\in \N_0$, il
+		suffit de montrer que p.t. $i, j\in \N_0$,
+		\begin{equation*}
+			m_{x^j}\mdx{i}\in \DK{i}
+		\end{equation*}
+		Pour montrer cela, il faut montrer que
+		\begin{equation*}
+			\lie{m_{x^j}\mdx{i}}{m_{q(x)}} \in \DK{i-1}
+		\end{equation*}
+		pour tout $q(x) \in K[x], i,j \in N_0$. Puisque le crochet de Lie est bilinéaire, et
+		que $m_{q(x)}$ peut s'écrire comme une combinaison linéaire des $m_{x^t}$
+		avec $t \in \N_0$, il suffit qu'on démontre que
+		\begin{equation*}
+			\lie{m_{x^j}\mdx{i}}{m_{x^t}} \in \DK{i - 1}
+		\end{equation*}
+		pour tous $i, j, t \in \N_0$. En faite, pour faire cela, on va démontrer
+		une affirmation plus générale:
+		\begin{equation*}
+			\lie{m_{x^r}\mdx{i}m_{x^s}, m_{x^t}} \in \DK{i-1}
+		\end{equation*}
+		pour tous $i, r, s, t \in \N_0$.
+		On va faire ceci par récurrence sur $i$:
+		\begin{itemize}
+			\item Si $i = 0$, alors on voit que
+			\begin{equation*}
+				\lie{m_{x^r}\mdx{i}m_{x^s}}{m_{x^t}} = \lie{m_{x^{r+s}}}{m_{x^{t}}} =
+				m_0 \in \DK{-1}
+			\end{equation*}
+			pour tous $r, s, t \in \N_0$.
+		\item Supposons que l'affirmation qu'on veut démontrer soit vraie pour un
+			certain $i \in \N_0$, alors pour tous $r, s \in \N_0, t\in \N$
+			\begin{align*}
+				\lie{m_{x^r}\mdx{i}m_{x^s}}{m_{x^t}}
+				&= m_{x^r}\mdx{i}m_{x^{s + t}} - m_{x^{r + t}}\mdx{i}m_{x^s}\\
+				&= m_{x^r}\left(\mdx{i}m_{x^{t}} - m_{x^{t}}\mdx{i}\right)m_{x^s}\\
+				&= m_{x^r}\lie{\mdx{i}}{m_{x^t}}m_{x^s}\\
+				&= m_{x^r}\left(
+					i\sum_{k=0}^{t - 1}m_{x^k}\mdx{i-1}m_{x^{t - 1 - k}}
+				\right)m_{x^s}\\
+				&= i\sum_{k=0}^{t - 1}m_{x^{k + r}}\mdx{i-1}m_{x^{t + s - 1 - k}}
+			\end{align*}
+			ce qui est par hypothèse de récurrence dans $\DK{i - 1}$.
+			On a utilisé l'identité de l'exercice 6.2 dans ces égalités.
+			Le cas où $t = 0$ est trivial, car le crochet s'annule.
+		\end{itemize}
+		Ceci démontre que 
+		\begin{equation*}
+			\lie{m_{x^r}\mdx{i}m_{x^s}, m_{x^t}} \in \DK{i-1}
+		\end{equation*}
+		pour tous $i, r, s, t \in \N_0$.
+		Et donc par les raisonnements qu'on a fait, ceci démontre que $E_s \subset
+		\DK{s}$ pour tous $s\geq 0$.
+
+		Il faut maintenant montrer que $\DK{s} \subset E_s$.
+		On va procédér par récurrence sur $s$.
+		\begin{itemize}
+			\item $\DK{0} = \{m_\lambda | \lambda \in K[x]\} = E_0$
+			\item supposons que pour un certain $s \geq 0$,
+				$\DK{s} \subset E_s$.
+				Soit $\theta \in \DK{s + 1}$, alors
+				$\lie{\theta}{m_x} \in \DK{s}$
+		\end{itemize}
+\end{enumerate}
+
+
+\end{document}
