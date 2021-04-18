@@ -1,0 +1,260 @@
+\documentclass[french]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{enumitem}
+
+\usepackage{amsmath, amssymb, amsfonts}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\Id}{\mathrm{Id}}
+
+\title{Série 5 - Exercice à rendre}
+\author{Matthew Dupraz}
+
+\begin{document}
+
+\maketitle
+
+Soit $A = F[G]$ où $F$ est un corps et $G$ un groupe.
+
+\subsection*{(a)}
+
+Soit $\sum_{g \in G} a_g g \in A$.
+On va montrer que $\sum_{g \in G} a_g g \in Z(A)$ ssi $g \mapsto a_g$
+est constant sur les classes de conjugaison.
+
+Supposons d'abord que $\sum_{g \in G} a_g g \in Z(A)$.
+Soient $g_1, g_2 \in G$ t.q. il existe $h \in G$ t.q.
+$g_2 = h g_1 h^{-1}$.
+Alors
+\begin{equation*}
+	\sum_{g \in G} a_g hg = h\left( \sum_{g\in G} a_g g \right)
+	= \left(\sum_{g\in G} a_g g\right) h = \sum_{g \in G} a_g gh
+\end{equation*}
+En particulier, le coefficient de $hg_1$ dans la première somme c'est
+$a_{g_1}$. Le coefficient de $g_2h$ dans la deuxième somme c'est
+$a_{g_2}$. Mais comme les sommes sont égales, et que $hg_1 = g_2h$, ceci
+implique $a_{g_1} = a_{g_2}$.
+Ceci démontre que $g \mapsto a_g$ est constant sur les classes de
+conjugaison.
+
+Dans l'autre sens, supposons que $g \mapsto a_g$ soit constant sur les
+classes de conjugaison. Alors soit $\sum_{g\in G} b_g g \in A$.
+On a que
+\begin{align*}
+	\sum_{g \in G}b_{g}g \sum_{g\in G}a_{g} g &= 
+	\sum_{g \in G} \sum_{g' \in G} a_{g'} b_g (gg')	\\
+	(*) ~~
+	&= \sum_{g \in G}\sum_{g' \in G} a_{gg'g^{-1}}b_{g} (gg'g^{-1}g)\\
+	&= \sum_{g \in G}\sum_{g'' \in gGg^{-1}} a_{g''}b_g (g''g) \\
+	(**) ~~ &= \sum_{g \in G}a_{g} g \sum_{g \in G} b_g g
+\end{align*}
+Pour l'égalité $(*)$ on a utilisé le fait que $a_{g'}= a_{gg'g^{-1}}$
+puisque $g \mapsto a_g$ est constant sur les classes de conjugaison.
+Pour $(**)$ on a simplement utilisé le fait que $gGg^{-1} = G$.
+Ceci démontre que $\sum_{g\in G} a_g g \in Z(A)$.
+
+\subsection*{(b)}
+
+Fixons $A = \C[S_3]$ et $\epsilon$ une racine primitive cubique de
+l'unité.
+Soit
+\begin{equation*}
+	e_1 = \frac{1}{6}\sum_{g \in G} g,
+	e_2 = \frac{1}{6}\sum_{g\in G} \sgn(g)g
+	\text{ et }e_3 = f_1 + f_2 \in A,
+\end{equation*}	
+où $f_1 = \frac{\Id + \epsilon(123)
++ \epsilon^2(132)}{3}$, et $f_2 = \frac{\Id + \epsilon^2(123)
++ \epsilon (132)}{3}$.
+On va montrer que $A \cong Ae_1 \times Ae_2 \times Ae_3$.
+
+Tout d'abord, soit $\sim$ la relation d'équivalence induite par la
+conjugaison. Alors pour tous $g, h \in S_3$, on a que $g \sim h$ implique
+$\sgn(g) = \sgn(h)$, car si il existe $k \in S_3$ t.q. $h = kgk^{-1}$,
+alors $\sgn(h) = \sgn(kgk^{-1}) = \sgn(k)\sgn(g)\sgn(k)^{-1} = \sgn(g)$.
+De ceci il est déjà clair que les coefficients de $e_1$ et $e_2$ sont
+constants sur les classes de conjugaison. Ainsi $e_1, e_2 \in Z(A)$.
+De plus, on a que $e_3 = \frac{2}{3}\Id - \frac{1}{3}(123)
+- \frac{1}{3}(132)$, car $\epsilon + \epsilon^2 = -1$.
+Les coefficients de $e_3$ sont constants (nuls) sur les éléments
+de signe $-1$. Ils sont aussi constants sur les éléments de signe
+$+1$, avec l'exception du coefficient de $\Id$. Mais $\Id$ est le seul
+élément dans sa classe d'équivalnce, car p.t. $g \in S_3$,
+$g\Id g^{-1} = \Id$.
+Ainsi les coefficients de $e_3$ sont constants sur les
+classes de conjugaison et par la partie (a) on conclut que $e_3 \in Z(A)$.
+
+On va montrer que $e_1, e_2, e_3$ sont idempotents.
+\begin{align*}
+	e_1^2 &= \left(\frac{1}{6}\sum_{g \in S_3} g\right)\left(\frac{1}{6}
+	\sum_{g \in S_3} g\right)
+	= \frac{1}{36}\sum_{g \in S_3}\sum_{g' \in S_3} gg'\\
+	&= \frac{1}{36}\sum_{g \in S_3}\sum_{g'' \in gS_3g^{-1}} g''
+	= \frac{1}{6}\sum_{g'' \in S_3} g'' = e_1,
+\end{align*}
+donc $e_1$ est idempotent.
+\begin{align*}
+	e_2^2 &= \left(\frac{1}{6}\sum_{g \in S_3} \sgn(g)g\right)\left(\frac{1}{6}
+	\sum_{g \in S_3} \sgn(g)g\right)
+	= \frac{1}{36}\sum_{g \in S_3}\sum_{g' \in S_3} \sgn(g)\sgn(g')gg'\\
+	&= \frac{1}{36} \sum_{g \in S_3}\sum_{g'\in S_3} \sgn(gg') gg'
+	= \frac{1}{36}\sum_{g \in S_3}\sum_{g'' \in gS_3g^{-1}} \sgn(g'')g'' \\
+	&= \frac{1}{6} \sum_{g'' \in S_3} g'' = e_2,
+\end{align*}
+donc $e_2$ est idempotent. Finalement,
+\begin{align*}
+	e_3^2 &=
+	\left(\frac{2}{3} \Id - \frac{1}{3} (123) - \frac{1}{3} (132)\right)
+	\left(\frac{2}{3} \Id - \frac{1}{3} (123) - \frac{1}{3} (132)\right)\\
+	&= \left(\left(\frac{4}{9} + \frac{1}{9} + \frac{1}{9}\right)\Id
+	+ \left( - \frac{2}{9} - \frac{2}{9} + \frac{1}{9}\right)(123)
+	+ \left( - \frac{2}{9} - \frac{2}{9} + \frac{1}{9}\right)(132)\right)\\
+	&= 
+	\frac{2}{3} \Id - \frac{1}{3} (123) - \frac{1}{3} (132) = e_3
+\end{align*}
+et donc $e_3$ est idempotent.
+
+On vérifie que $e_1, e_2, e_3$ sont orthogonaux entre eux.
+\begin{align*}
+	e_1e_2 &= e_2 e_1 = \frac{1}{6}\sum_{g\in S_3} \sgn(g) g \frac{1}{6}
+	= \frac{1}{36} \sum_{g\in S_3} \sgn(g)\sum_{g' \in S_3} gg' \\
+	&= \frac{1}{36} \sum_{g\in S_3} \sgn(g) \sum_{g'' \in gS_3g^{-1}} g''
+	= \frac{1}{36} \sum_{g'' \in S_3} \left(\sum_{g \in S_3} \sgn(g)\right) g'' =
+	0,
+\end{align*}
+car $\sum_{g \in S_3} \sgn(g) = 0$. Ainsi $e_1$ et $e_2$ sont orthogonaux.
+Il est facile à voir que $e_1 + e_2 + e_3 = 1$.
+Ainsi on a que
+$e_1e_3 = e_1(1 - e_1 - e_2) = e_1 - e_1^2 = 0$ donc $e_1$ et $e_3$ sont
+orthogonaux.
+Aussi $e_2 e_3 = e_2(1 - e_1 - e_2) = e_2 - e_2^2 = 0$. Ainsi $e_2$ et $e_3$
+sont aussi orthogonaux. (On a vérifié l'orthogonalité que d'un coté, mais comme
+$e_1$, $e_2$, $e_3$ sont dans le centre, ceci est suffisant).
+
+% Calculs dégues
+\iffalse
+
+Notons $a_g$ les coefficients de $e_3$, alors on a que $\sum_{g\in S_3} a_g =
+0$. Alors
+\begin{align*}
+	e_1e_3 &= \frac{1}{6}\sum_{g \in S_3}g \sum_{g' \in S_3} a_{g'} g'
+	= \frac{1}{6}\sum_{g' \in S_3} a_{g'} \sum_{g \in S_3} gg'\\
+	&= \frac{1}{6} \sum_{g' \in S_3} a_{g'} \sum_{g'' \in g'S_3g'^{-1}} g''
+	= \frac{1}{6} \sum_{g'' \in S_3} \left(\sum_{g' \in S_3} a_{g'}\right) g''
+	= 0,
+\end{align*}
+donc $e_2$ et $e_3$ sont orthogonaux. Enfin,
+\begin{align*}
+	e_2e_3 &= \frac{1}{6}\sum_{g \in S_3}\sgn(g)g \sum_{g' \in S_3} a_{g'} g'
+	= \frac{1}{6}\sum_{g' \in S_3} a_{g'} \sum_{g \in S_3} \sgn(g)gg'\\
+	&= \frac{1}{6}\sum_{g' \in S_3} a_{g'} \sum_{g \in S_3} \sgn(gg')gg'
+	= \frac{1}{6} \sum_{g' \in S_3} a_{g'} \sum_{g'' \in g'S_3g'^{-1}}
+	\sgn(g'')g''\\
+	&= \frac{1}{6} \sum_{g'' \in S_3} \left(\sum_{g' \in S_3} a_{g'}\right)
+	\sgn(g'')g''
+	= 0,
+\end{align*}
+et donc $e_2$ et $e_3$ sont orthogonaux. On a utilisé le fait que pour tous $g
+\in S_3$, si $a_g \neq 0$, alors $\sgn(g) = 1$ par définition de $e_3$.
+
+\fi
+% Fin calculs dégues
+
+Tout cela nous permet de définir un isomorphisme entre $A$ et 
+$Ae_1\times Ae_2 \times Ae_3$. Déjà, puisque $e_1, e_2, e_3$ sont idempotents et
+centraux, $Ae_1$, $Ae_2$, $Ae_3$ sont des anneaux avec les éléments neutres
+$e_1$, $e_2$ et $e_3$ respectivement. De plus, on a que les applications
+$\phi_i: A \to Ae_i, a \mapsto ae_i$ pour $i \in \{1, 2, 3\}$ sont des
+homomorphismes d'anneaux.
+La propriété universelle du produit nous donne l'homomorphisme d'anneaux
+\begin{equation*}
+	\phi: A \to Ae_1\times Ae_2\times Ae_3, a \mapsto (ae_1, ae_2, ae_3).
+\end{equation*}
+On définit
+\begin{equation*}
+	\psi: Ae_1\times Ae_2\times Ae_3 \to A, (a, b, c) \mapsto a + b + c,
+\end{equation*}
+on va montrer que $\psi$ est l'inverse de $\phi$ ce qui démontrera que $\phi$
+est un isomorphisme.
+
+Soit alors $a \in A$,
+on a que
+\begin{equation*}
+	\psi \circ \phi(a) = \psi(ae_1, ae_2, ae_3) = ae_1 + ae_2 + ae_3
+	= a(e_1 + e_2 + e_3) = a
+\end{equation*}
+et donc $\psi \circ \phi = \Id_{A}$.
+
+Soit $(a_1e_e, a_2e_2, a_3e_3) \in Ae_1\times Ae_2\times Ae_3$, alors on a que
+\begin{align*}
+	\phi\circ\psi(a_1e_1, a_2e_2, a_3e_3) &= \phi(a_1e_1 + a_2e_2 + a_3e_3)\\
+	&= \phi(a_1e_1) + \phi(a_2e_2) + \phi(a_3e_3)\\
+	&= (a_1e_1, 0, 0) + (0, a_2e_2, 0) + (0, 0, a_3e_3)\\
+	&= (a_1e_1, a_2e_2, a_3e_3).
+\end{align*}
+Ici on a utilisé le fait que $a_ie_ie_j = a_ie_i\delta_{ij}$ pour tous $i, j
+\in \{1, 2, 3\}$ par orthogonalité et idempotence. Ainsi $\phi\circ\psi = \Id_{Ae_1 \times Ae_2 \times Ae_3}$ ce qui démontre que
+$\psi$ est l'inverse de $\phi$ et donc que $\phi$ est un isomorphisme.
+
+\subsection*{(c)}
+On va montrer que $Ae_1 \cong \C$. On a que
+\begin{align*}
+	Ae_1 &= \left\{\left(\sum_{g\in S_3}a_g g\right)\left(\frac{1}{6}
+	\sum_{g \in S_3} g\right), \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \left\{\frac{1}{6}\sum_{g\in S_3}a_g
+	\sum_{g' \in S_3} gg', \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \left\{\frac{1}{6}\sum_{g\in S_3}a_g
+	\sum_{g'' \in gS_3} g'', \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \left\{\left(\sum_{g\in S_3}a_g\right)\frac{1}{6}
+	\sum_{g'' \in S_3} g'', \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \{ce_1, c \in \C\}
+\end{align*}
+
+Ainsi on peut représenter tout élément de $Ae_1$ sous la forme
+$ce_1$. Il est facile à voir que cette représentation est unique.
+Réciproquement, tout élément de la forme $ce_1$ est dans $Ae_1$.
+Ainsi on a une bijection ensembliste
+\begin{equation*}
+	\phi: Ae_1 \to \C, ce_1 \mapsto c
+\end{equation*}
+On montre que $\phi$ est un homomorphisme d'anneaux (et donc un isomorphisme).
+Soient $c_1e_1, c_2e_1 \in Ae_1$, alors
+\begin{itemize}
+	\item 
+		$\phi(c_1e_1 + c_2e_1) = \phi((c_1 + c_2)e_1)
+		= c_1 + c_2 = \phi(c_1e_1) + \phi(c_2e_1)$
+	\item
+		$\phi(c_1e_1\cdot c_2e_1) = \phi(c_1c_2e_1^2) = \phi(c_1c_2e_1) = c_1c_2
+		= \phi(c_1e_1)\phi(c_2e_1)$
+	\item
+		$\phi(1_{Ae_1}) = \phi(e_1) = 1$
+\end{itemize}
+Ceci démontre que $\phi$ est un homomorphisme et donc $Ae_1 \cong \C$.
+
+Finalement, on va montrer que $Ae_2 \cong \C$. On a que
+\begin{align*}
+	Ae_2 &= \left\{\left(\sum_{g\in S_3}a_g g\right)\left(\frac{1}{6}
+	\sum_{g \in S_3} \sgn(g)g\right), \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \left\{\frac{1}{6}\sum_{g\in S_3}a_g
+	\sum_{g' \in S_3} \sgn(g')gg', \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \left\{\frac{1}{6}\sum_{g\in S_3}a_g\sgn(g)
+	\sum_{g' \in S_3} \sgn(gg')gg', \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \left\{\frac{1}{6}\sum_{g\in S_3}a_g\sgn(g)
+	\sum_{g'' \in gS_3} \sgn(g'')g'', \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \left\{\left(\sum_{g\in S_3}a_g\sgn(g)\right)\frac{1}{6}
+	\sum_{g'' \in S_3} \sgn(g'')g'', \sum_{g \in S_3} a_g g \in A\right\}\\
+	&= \{ce_2, c \in \C\}
+\end{align*}
+Comme avant, ceci nous donne une bijection ensembliste
+\begin{equation*}
+	\psi: Ae_2 \to \C, ce_2 \mapsto c
+\end{equation*}
+Le même raisonnement que pour $\phi$ montre que $\psi$ est un homomorphisme et
+donc en particulier un isomorphisme, d'où $Ae_2 \cong \C$.
+
+\end{document}
