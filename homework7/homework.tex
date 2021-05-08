@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\pgcd}{\mathrm{pgcd}}
+
+\title{Exercice bonus 7}
+\author{Matthew Dupraz}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1.}
+
+On va montrer que $x^2 + y^2$ est irréductible dans
+$\Q[x, y]$, mais pas dans $\C[x, y]$.
+
+Soit $\ev_1: Q[x, y] \to Q[x]$ l'homomorphisme évaluation en $1$.
+Pour montrer que $x^2 + y^2$ est irréductible dans $\Q[x, y]$,
+il suffit par la Proposition 2.8.1 de montrer que
+$\ev_1(x^2 + y^2) = x^2 + 1$ l'est dans $\Q[x]$.
+Pour montrer cela, il suffit par la partie (d) de l'Exemple 2.3.7
+de montrer que $c^2 + 1 \neq 0$ pour tous $c \in \Q$.
+On a que $c^2 \geq 0$ et donc $c^2 + 1 \geq 1$ ce qui démontre le
+résultat.
+
+En revanche, $x^2 + y^2 = (x + iy)(x - iy)$ et donc $x^2 + y^2$
+n'est pas irréductible dans $\C[x, y]$.
+
+\subsection*{2.}
+
+On va montrer que $x^3 - (y^7 + 2y^5 + y^3)$ est irréductible dans
+$\Q[x, y]$.
+
+De nouveau, par la Proposition 2.8.1, il suffit de montrer que
+$\ev_1(x^3 - (y^7 + 2y^5 + y^3)) = x^3 - 4$ est irréductible dans
+$\Q[x]$.
+Par l'Exemple 2.3.7(d) il suffit donc de montrer qu'il n'existe pas
+de $c \in \Q$ t.q. $c^3 - 4 = 0$. Supposons par l'absurde qu'il
+existe un tel $c \in \Q$. Soient alors $p, q \in \Z$, tels que 
+$q \neq 0$, $\pgcd(p, q) = 1$ et $c = \frac{p}{q}$.
+Alors 
+\begin{equation*}
+	\left(\frac{p}{q}\right)^3 = 4
+\end{equation*}
+ce qui implique $p^3 = 4q^3$
+En particulier, $p^3 \in (2)$ et puisque $2$ est
+premier, $p \in (2)$. Ainsi $p = 2k$ pour un certain $k \in \Z$.
+Alors on obtient que $(2k)^3 = 4q^3$ et donc
+$8k^3 = 4q^3$. Mais ceci implique $2k^3 = q^3$ et donc
+$q^3 \in (2)$. De nouveau, comme $2$ est premier, 
+$q \in (2)$. Ceci contredit le fait que $\pgcd(p, q) = 1$, et
+donc il n'existe pas de $c\in \Q$ t.q. $c^3 = 4$.
+Ainsi $x^3 - 4$ est irréductible dans $\Q[x]$ et donc
+$x^3 - (y^7 + 2y^5 + y^3)$ l'est aussi dans $\Q[x, y]$.
+
+
+\end{document}
