@@ -1,0 +1,124 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\sef}{\F[[t]]}
+\newcommand{\sel}{\F((t))}
+\newcommand{\ord}{\mathrm{ord}}
+\newcommand{\ev}{\mathrm{ev}}
+
+\author{Matthew Dupraz}
+\title{Exercice bonus - Série 8}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{(a)}
+
+Soit $\F$ un corps, on va montrer que $\sef$ est un
+anneau factoriel.
+
+Soit $f = \sum_{i=0}^\infty a_it^i \in \sef$, alors on définit
+\begin{equation*}
+\ord(f) = \begin{cases}
+	\min\{k\in \N: a_k \neq 0\} & \text{ si } f \neq 0\\
+	-\infty & \text{ si } f = 0
+\end{cases}
+\end{equation*}
+
+Si $f \neq 0$, on peut alors
+écrire $f = t^{\ord(f)}g$ où le coefficient de $t^0$ de $g$ est
+non-nul. En particulier, ceci implique par l'exercice 9.1 de la
+série 1 que $g$ est inversible dans $\sef$.
+
+On va montrer que 
+$\ord$ est une fonction euclidienne. Soient $f \in \sef\setminus
+\{0\}$ et $g \in \sef$. Alors si $\ord(g) < \ord(f)$, on peut
+simplement écrire $g = 0\cdot f + g$, supposons alors que
+$\ord(g) \geq \ord(f)$. On a alors que $f = t^{\ord(f)}a$ et
+$g = t^{\ord(g)}b$ pour $a, b \in \sef^\times$.
+En particulier,
+\begin{equation*}
+	g = t^{\ord(g)}a = t^{\ord(g) - \ord(f)}ab^{-1}\cdot f + 0
+\end{equation*}
+On a que $\ord(t^{\ord(g) - \ord(f)}ab^{-1}) = \ord(g) - \ord(f)
+< \ord (g)$ et donc ceci démontre que $\ord$ est bien une fonction
+euclidienne.
+
+Donc $\sef$ est un anneau euclidien, ce qui implique qu'il est
+principal et donc factoriel.
+
+\subsection*{(b)}
+
+Avant de continuer, on vérifie une propriété de $\ord$ qui nous
+sera utile -- pour tous $f, g \in \sef$, $\ord(f\cdot g) = 
+\ord(f) + \ord(g)$. On a que $f = t^{\ord(f)}a$ et
+$g = t^{\ord(g)}b$ où $a, b \in \sef^\times$. Ainsi
+$f\cdot g = t^{\ord(f) + \ord(g)}ab$. On a que $ab \in \sef^\times$
+et donc le coefficient de $t^0$ est non-nul. Il s'ensuit alors
+que forcément $\ord(f\cdot g) = \ord(f) + \ord(g)$ et donc
+$\ord$ est bien multiplicative.
+
+On va montrer que $x^{2021} - t^{42} \in (\sef)[x]$ est
+irréductible. On a vu dans l'exercice 9 de la série 1 que le
+corps de fractions de $\sef$ c'est $\sel$.
+Le Lemme $3.3.3$ assure l'existence d'un corps de décomposition de
+$x^{2021} - t^{42}$ sur $\sel$, notons le $\K$. On a alors qu'il
+existe $c, \alpha_1, \dots, \alpha_{2021} \in \K$ tels que
+\begin{equation*}
+	x^{2021} - t^{42} = c\prod_{i = 1}^{2021}(x - \alpha_i)
+\end{equation*}
+Puisque le coefficient dominant de $x^{2021} - t^{42}$ c'est $1$,
+on déduit que $c = 1$
+
+Raisonnons par l'absurde et supposons
+que $x^{2021} - t^{42}$ ne soit pas
+irréductible sur $\sef$, alors il existe $f, g \in (\sef)[x]$
+non-inversibles tels que $x^{2021} - t^{42} = f\cdot g$.
+Puisque $K[x]$ est un anneau factoriel, par
+l'unicité de décomposition dans un anneau factoriel, on a qu'il
+existe une partition $I \sqcup J = \{1, \dots, 2021\}$ et
+$u \in \K$ tels que
+\begin{equation*}
+	f = u\prod_{i \in I} (x - \alpha_i)
+	~~\text{ et }~~
+	g = u^{-1}\prod_{j \in J} (x - \alpha_j)
+\end{equation*}
+Par supposition, $f$ et $g$ ne sont pas inversibles et donc $I, J$
+sont non-vides.
+On a alors que $\alpha_I := \prod_{i\in I}\alpha_i \in \sef$.
+Puisque $x - \alpha_i|x^{2021} - t^{42}$, on a que 
+$\alpha_i^{2021} - t^{42} = 0$ pour tous $i \in I$.
+En particulier, 
+\begin{equation*}
+	\alpha_I^{2021} = \left(\prod_{i\in I}\alpha_i\right)^{2021}
+	= \prod_{i\in I}\alpha_i^{2021}
+	= \prod_{i \in I}t^{42} = t^{42|I|}
+\end{equation*}
+Il s'ensuit que $\ord(\alpha_I^{2021}) = \ord(t^{42|I|})$ ce qui
+implique $2021\cdot\ord(\alpha_I) = 42|I|$ par la multiplicativité
+de $\ord$. Puisque $2021 = 43\cdot47$, on a que $2021$ et $42$
+sont premiers entre eux et donc forcément que
+$2021$ divise $|I|$. Comme $|I| \leq 2021$, ceci implque que
+$|I| = 2021$, ce qui est absurde, car alors $|J| = 0$.
+
+Ceci démontre alors que $x^{2021} - t^{42}$ est irréductible
+sur $\sef$.
+
+\subsection*{(c)}
+
+On va montrer que $x^{2021} + y^{2021} - t^{42}$ est irréductible
+dans $(\sef)[x, y]$. Soit $\ev_0: (\sef)[y][x] \to (\sef)[x]$
+l'homomorphisme évaluation en 0, alors
+\begin{equation*}
+	\ev_0(x^{2021} + y^{2021} - t^{42}) = x^{2021} - t^{42}
+\end{equation*}
+ce qui est irréductible par la partie (b). On conclut par la
+Proposition 2.8.1 que $x^{2021} + y^{2021} - t^{42}$ est
+irréductible dans $(\sef)[x, y]$.
+
+\end{document}
