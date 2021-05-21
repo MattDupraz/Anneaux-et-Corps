@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+
+\author{Matthew Dupraz}
+\title{Exercice Bonus - Série 9}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\L}{\mathbb{L}}
+
+\begin{document}
+
+\maketitle
+
+Soit $f = x^7 - y^5 \in \C[x, y]$
+Soit $\K = \C(y)$ et $\L$ le corps de décomposition de $f$ sur $\K$.
+Soit $\alpha$ une racine de $f$ dans $\L$ et posons
+$\beta = \frac{\alpha^3}{y^2}$. On va montrer que $f$ est
+irréductible dans $\C[x, y]$
+
+\subsection*{1.}
+
+On va montrer que $[\K(\beta): \K] = 7$.
+On a que $\alpha$ est une racine de $f$ et donc $\alpha^7 - y^5 = 0$
+Il s'ensuit que $\frac{\alpha^7}{y^5} = 1$ et donc
+$\frac{\beta^7}{y} = \frac{\alpha^{21}}{y^{15}} = 1$.
+On déduit que $\beta^7 - y = 0$ et donc $\beta$ est une
+racine du polynôme $g = x^7 - y \in \C[x, y]$.
+Par le critère d'Eisenstein, puisque $g$ est primitif et 
+$y$ est irréductible sur $\C[y]$, on a que $g$ est irréductible
+sur $\C[y]$. Par le lemme de Gauss III, puisque $g$ est primitif,
+$g$ est aussi irréductible sur $\K$. On a que
+$g \in (m_{\beta, \K})$, mais alors puisque $g$ est irréductible
+sur $\K$, on a forcément $g \sim m_{\beta, \K}$ et donc en
+particulier, $\deg(m_{\beta, \K}) = 7$.
+Ainsi $[\K(\beta): \K] = 7$.
+
+\subsection*{2.}
+
+On a que $\K(\beta) \subseteq \K(\alpha)$, puisque
+$\beta = \frac{\alpha^3}{y^2} \in \K(\alpha)$.
+Aussi, on a que $\K(\alpha) \subseteq \K(\beta)$, puisque
+\begin{equation*}
+\alpha = \alpha \frac{\alpha^{14}}{y^{10}}
+= \frac{\alpha^{15}}{y^{10}} = \beta^5 \in \K(\beta)
+\end{equation*}
+Donc $\K(\alpha) = \K(\beta)$.
+
+\subsection*{3.}
+
+On a que
+\begin{equation*}
+[\K(\alpha):\K] = [\K(\alpha):\K(\beta)][\K(\beta):\K]
+= 1\cdot 7 = 7
+\end{equation*}
+et donc
+$\deg(m_{\alpha, \K}) = 7$. Puisque $f \in (m_{\alpha, \K})$
+on a qu'il existe $h \in \K[x]$ tel que $f = h\cdot m_{\alpha, \K}$.
+Puisque $\deg(f) = 7$, on déduit que $\deg(h) = 0$.
+En particulier, $h \in \K = (\K[x])^\times$.
+Ainsi $f \sim m_{\alpha, \K}$ et donc $f$ est irréductible sur
+$\K$. Puisque $f$ est primitive, par le lemme de Gauss III on a
+alors que $f$ est irréductible aussi sur $\C[y]$.
+
+	
+\end{document}
