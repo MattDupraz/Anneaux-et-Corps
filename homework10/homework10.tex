@@ -1,0 +1,208 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsfonts, amssymb}
+
+\newcommand{\F}{\mathbb{F}}
+
+\author{Matthew Dupraz}
+\title{Série 10 - Exercice bonus}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1.}
+
+Soif $f \in \F_p[x]$ un polynôme unitaire irréductible de
+degré $d$. Par l'exercice 5, $f$ n'a pas de racines multiples
+dans $\F_{p^d}$.
+De plus si $g \in \F_p[x]$ est un autre polynôme irréductible
+de degré $d$, alors puisque $f$, et $g$ sont unitaires, ils ne
+peuvent pas être associés. On a alors par l'exercice 5 que
+$f$ et $g$ n'ont aucune racine en commun. Notons $E$ l'ensemble
+de toutes les racines des polynômes unitaires irréductibles
+sur $\F_p$ de degré $d$.
+Alors le raisonnement précédent implique que
+$|E| = d\cdot N_d$, où $N_d$ est le nombre de polynômes unitaires
+irréductibles sur $\F_p$ de degré $d$.
+
+Pour conclure, on va démontrer que $E = \F_{p^d} \setminus
+\bigcup_{L \subsetneq \F_{p^d}}L$.
+Soit $\alpha \in E$, alors $\alpha$ est une racine d'un unique
+polynôme $f$ unitaire irréductible sur $\F_p$ de degré $d$.
+En particulier, $f \sim m_{\alpha, \F_p}$ car $f$ est
+irréductible. Ceci implique que 
+$[\F_p(\alpha):\F_p] = d$ et puisque
+$[\F_{p^d} : \F_p] = d$, on a forcément
+$[F_{p^d}:\F_{p}(\alpha)] = 1$,
+et donc $\F_p(\alpha) = \F_{p^d}$.
+Ainsi $\alpha$ n'appartient à aucun sous-corps propre de $\F_{p^d}$,
+d'où $\alpha \in \F_{p^d} \setminus
+\bigcup_{L \subsetneq \F_{p^d}}L$. 
+
+Pour l'autre inclusion, soit $\alpha \in \F_{p^d}\setminus
+\bigcup_{L \subsetneq \F_{p^d}}L$.
+Soit $m_{\alpha, \F_p} \in \F_p[x]$,
+alors forcément $\deg m_{\alpha, \F_p} = d$,
+car sinon $[\F_p(\alpha): \F_p] < d$ et donc $\alpha$ appartiendrait
+à un sous-corps propre de $\F_{p^d}$. Mais alors si $c \in F_p$ est
+le coefficient dominant de $m_\alpha$, on a que
+$c^{-1}m_{\alpha, \F_p}$ est un polynôme unitaire irréductible
+sur $\F_p$ de degré $d$ dont $\alpha$ est une racine.
+Ainsi $\alpha \in E$. On conclut alors que $E = \F_{p^d}\setminus
+\bigcup_{L \subsetneq \F_{p^d}}L$.
+
+Ceci démontre que
+\begin{equation*}	
+	d\cdot N_d = |E| = |\F_{p^d}\setminus
+	\bigcup_{L \subsetneq \F_{p^d}}L|
+\end{equation*}
+
+\subsection*{2.}
+
+En appliquant le Corollaire 3.4.22 on peut retrouver tous les
+sous-corps de $F_{p^d}$ et donc calculer $|\F_{p^d}\setminus
+\bigcup_{L \subsetneq \F_{p^d}}L|$. Pour chaque $r|s$,
+dans tout ce qui suit on
+va identifier l'unique sous-corps de $\F_{p^s}$ qui est isomorphe
+à $\F_{p^r}$ avec $\F_{p^r}$.
+
+\begin{itemize}
+	\item On a que $\F_{p}$ est l'unique sous-corps propre
+		de $\F_{p^2}$. Donc
+		\begin{equation*}
+			|\F_{p^2}\setminus
+			\bigcup_{L \subsetneq \F_{p^2}}L|
+			= |\F_{p^2} \setminus \F_p| = p^2 - p
+		\end{equation*}
+		Ainsi on obtient
+		\begin{equation*}
+			N_2 = \frac{p^2 - p}{2}
+		\end{equation*}
+	\item On a que $\F_{p}$ est l'unique sous-corps propre
+		de $\F_{p^3}$. Donc
+		\begin{equation*}
+			|\F_{p^3}\setminus
+			\bigcup_{L \subsetneq \F_{p^3}}L| =
+			|\F_{p^3} \setminus \F_p| = p^3 - p
+		\end{equation*}
+		Ainsi on obtient
+		\begin{equation*}
+			N_3 = \frac{p^3 - p}{3}
+		\end{equation*}
+	\item On a que $\F_{p^2}$ et $\F_{p}$ sont les uniques
+		sous-corps propres de $\F_{p^4}$,
+		mais $\F_p \subseteq \F_{p^2}$, donc 
+		\begin{equation*}
+			|\F_{p^4}\setminus
+			\bigcup_{L \subsetneq \F_{p^4}}L| =
+			|\F_{p^4} \setminus \F_{p^2}| = p^4 - p^2
+		\end{equation*}
+		Ainsi on obtient
+		\begin{equation*}
+			N_4 = \frac{p^4 - p^2}{4}
+		\end{equation*}
+	\item On a que $\F_{p}$ est l'unique sous-corps propre
+		de $\F_{p^5}$	
+		\begin{equation*}
+			|\F_{p^5}\setminus
+			\bigcup_{L \subsetneq \F_{p^5}}L| =
+			|\F_{p^5} \setminus \F_p| = p^5 - p
+		\end{equation*}
+		Ainsi on obtient
+		\begin{equation*}
+			N_5 = \frac{p^5 - p}{5}
+		\end{equation*}
+	\item On a que $\F_{p}, \F_{p^2}, \F_{p^3}$ sont tous les
+		sous-corps de $\F_{p^6}$. On a que 
+		$\F_{p} \subseteq \F_{p^2}$ et $\F_{p} \subseteq \F_{p^3}$,
+		ainsi forcément $\F_{p^2}\cap\F_{p^3} = \F_p$.
+		Donc par le principe d'inclusion exclusion on obtient
+		\begin{align*}
+			|\F_{p^6}\setminus
+			\bigcup_{L \subsetneq \F_{p^6}}L| &=
+			|\F_{p^6} \setminus (\F_{p^2} \cup \F_{p^3})|\\
+			&= |\F_{p^6}| - (|\F_{p^2}| + |\F_{p^3}| - |\F_{p}|)\\
+			&= p^6 - p^3 - p^2 + p
+		\end{align*}
+		Ainsi on obtient
+		\begin{equation*}
+			N_6 = \frac{p^6 - p^3 - p^2 + p}{6}
+		\end{equation*}
+\end{itemize}
+
+\subsection*{3.}
+
+Supposons que $n,m$ sont premiers entre eux,
+alors on va montrer que 
+$\F_{p^{d/n}} \cap \F_{p^{d/m}} = \F_{p^{d/nm}}$.
+On a que $\F_{p^{d/n}} \cap \F_{p^{d/m}} = \F_{p^r}$ pour un
+certain $r$ qui divise $d/n$ et $d/m$. Donc il existe
+$a, b \in \mathbb{N}$ tels que $arn = d = brm$. En particulier
+$an = bm$ et donc puisque $n,m$ sont premiers entre eux,
+$a | m$ et donc $a = cm$ pour un certain $c\in \mathbb{N}$.
+Ainsi $cr = d/nm$ d'où $r$ divise $d/nm$.
+Mais puisque $\F_{p^{d/nm}} \subseteq \F_{p^{d/n}}
+\cap \F_{p^{d/m}} = \F_{p^r}$, on a que $d/nm$ divise $r$.
+On conclut que $r = d/nm$
+
+\subsection*{4.}
+
+Soit $d = s_1^{i_1} \dots s_n^{i_n}$ la décomposition de $d$
+en facteurs premiers.
+On a que
+\begin{equation*}
+	\bigcup_{L \subsetneq \F_{p^d}}L
+	= \bigcup_{\substack{k|d \\ k \neq d}}\F_{p^k}
+	= \bigcup_{j = 1}^n\F_{p^{d/s_j}}	
+\end{equation*}
+car si $k|d$ et $k \neq d$, alors $k|d/s_j$ pour un ceratin $j$, et
+alors $\F_{p^k} \subseteq \F_{p^{d/s_j}}$.
+Par le principe d'inclusion-exclusion, on a que
+\begin{align*}
+	|\bigcup_{j = 1}^n\F_{p^{d/s_j}}|
+	&= \sum_{k = 1}^n (-1)^{k+1}\left(
+		\sum_{1 \leq j_1 < \dots < j_k \leq n}
+		|\F_{p^{d/s_{j_1}}} \cap \dots \cap \F_{p^{d/s_{j_k}}}|
+	\right) \\
+	&= \sum_{k = 1}^n (-1)^{k+1}\left(
+		\sum_{1 \leq j_1 < \dots < j_k \leq n}
+		|\F_{p^{d/s_{j_1}\cdots s_{j_k}}}|
+	\right) \\ 
+	&= \sum_{k = 1}^n (-1)^{k+1}\left(
+		\sum_{1 \leq j_1 < \dots < j_k \leq n}
+		p^{d/s_{j_1}\cdots s_{j_k}}
+	\right)
+\end{align*}
+On a alors que
+\begin{align*}
+	|\F_{p^d} \setminus \bigcup_{L \subsetneq \F_{p^d}}L|
+	&= p^d + \sum_{k = 1}^n (-1)^{k}\left(
+		\sum_{1 \leq j_1 < \dots < j_k \leq n}
+		p^{d/s_{j_1}\cdots s_{j_k}}
+	\right)\\
+	&= p^d + \sum_{k = 1}^n \left(
+		\sum_{1 \leq j_1 < \dots < j_k \leq n}
+		(-1)^k p^{d/s_{j_1}\cdots s_{j_k}}
+	\right)\\
+	&= \mu(1)p^d + \sum_{k = 1}^n \left(
+		\sum_{1 \leq j_1 < \dots < j_k \leq n}
+		\mu(s_{j_1}\cdots s_{j_k}) p^{d/s_{j_1}\cdots s_{j_k}}
+	\right)\\
+	&= 
+	\sum_{\substack{m_1, \dots, m_n \\ 0 \leq m_k \leq i_k}}
+	\mu(s_1^{m_1}\cdots s_n^{m_n}) p^{d/s_1^{m_1}\cdots s_n^{m_n}}\\
+	&= \sum_{r|d} \mu\left( \frac{d}{r}\right)p^r
+\end{align*}
+À la quatrième égalité on a rajouté des termes à la somme, mais on
+remarque que si $m_k \geq 2$ pour un certain $k$, alors 
+$\mu(s_1^{m_1} \cdots s_n^{m_n}) = 0$, ainsi tous les termes
+qu'on rajouté à la somme sont en fait nuls.
+On conclut que
+\begin{equation*}
+	N_d = \frac{1}{d}
+	|\F_{p^d} \setminus \bigcup_{L \subsetneq \F_{p^d}}L|
+	= \frac{1}{d}\sum_{r|d} \mu\left( \frac{d}{r}\right)p^r
+\end{equation*}
+
+\end{document}
