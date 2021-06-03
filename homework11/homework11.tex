@@ -1,0 +1,80 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\F}{\mathbb{F}}
+
+\author{Matthew Dupraz}
+\title{Exercice à rendre - Série 11}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{(a)}
+
+Soit $K$ un corps de caractéristique $p > 0$,
+soit $\alpha \in K \setminus K^p$. On va montrer que
+$x^p - \alpha \in K[x]$ est irréductible.
+
+Soit $M$ le corps de décomposition de $x^p - \alpha$,
+alors il existe $\beta \in M$ tel que $\beta^p = \alpha$.
+Alors $x^p - \alpha = (x - \beta)^p$, car on est dans un corps de
+caractéristique $p$. On a que $(x - \beta)^k \notin K[x]$ pour tout
+$k \in \{1, \dots, p-1\}$, car le coefficient de $x^{k-1}$ c'est
+$-\beta\binom{k}{k-1} \notin K$. Ainsi $x^p - \alpha$ est
+forcément irréductible sur $K$.
+
+\subsection*{(b)}
+
+Pour montrer que $L$ est un corps, il faut montrer que
+$(y^2 - x(x-1)(x+1))$ est maximal, i.e. que $y^2 - x(x-1)(x+1)$ est irréductible
+sur $\F_p(x)$. Puisque $\F_p[x]$ est un anneau factoriel et
+$y^2 - x(x-1)(x+1)$ est un polynôme primitif, par le lemme de Gauss III, 
+on a que $y^2 - x(x-1)(x+1)$ est irréductible si et seulement si il l'est
+sur $\F_p[x]$. Puisque c'est un polynôme de degré 2, ceci équivaut à dire
+qu'il ne s'annule pour aucun $f \in \F_p[x]$.
+On a que pour tous $f \in \F_p[x]$,
+$\deg(f^2) = 2\deg(f) \neq 3$ et donc $f^2 \neq x(x-1)(x+1)$.
+On conclut que $y^2 - x(x-1)(x+1)$ ne s'annule pour aucun $f \in \F_p[x]$ et
+donc $L$ est bien un corps.
+
+\subsection*{(c)}
+
+Pour commencer, on démontre que $x \in \F_p(x) \setminus \F_p(x)^p$.
+Pour tous $\frac{f}{g} \in \F_p(x)$ on peut définir
+$\deg(\frac{f}{g}) = \deg(f) - \deg(g)$. Il est facile à voir que c'est bien
+défini et multiplicatif. Alors pour tout $\frac{f^p}{g^p} \in \F_p(x)^p$, 
+on a forcément que $p | \deg{f^p}{g^p} = p\deg(f) - p\deg(g)$.
+Mais $\deg(x) = 1$ et donc forcément $x \notin \F_p(x)^p$.
+
+Raisonnons par l'absurde et supposons que $x \in L^p$, alors soit $a \in L^p$
+tel que $a^p = x$. On a alors la chaîne d'inclusions
+$\F_p(x) \subseteq \F_p(x)(a) \subseteq L$.
+Par la partie $(a)$, le polynôme $y^p - x$ est irréductible sur $\F_p(x)$, on 
+en déduit que $m_{a, \F_p(x)} \sim y^p - x$. On en déduit alors que
+$[\F_p(x)(a) : \F_p(x)] = p$, mais on a que $[L : \F_p(x)] = 2$, donc ceci est
+absurde, car $[L:\F_p(x)] = [L:\F_p(x)(a)][\F_p(x)(a):\F_p(x)]$ et $p > 2$.
+Ainsi $x \in L\setminus L^p$ et donc on conclut par la proposition 3.5.8 que
+$L$ n'est pas parfait.
+
+\subsection*{(d)}
+
+On démontre maintenant le cas $p = 2$.
+Pour cela, on va démontrer que $L = \F_2(\sqrt{x})$
+On a que
+\begin{equation*}
+	y^2 - x(x+1)(x-1) = y^2 + x(x+1)^2 = (y + \sqrt{x}(x+1))^2
+\end{equation*}
+et donc
+$L = \F_2(x)(\sqrt{x}(x+1)) = \F_2(x)(\sqrt{x})$, car
+$\sqrt{x}(x+1) \in \F_2(x)(\sqrt{x})$ et
+$\sqrt{x} = \frac{\sqrt{x}(x+1)}{x+1} \in \F_2(x)(\sqrt{x}(x+1))$.
+Aussi, $\F_2(x)(\sqrt{x}) = \F_2(\sqrt{x})$, car 
+$\sqrt{x} \in \F_2(x)(\sqrt{x})$ et $x, \sqrt{x} \in \F_2(\sqrt{x})$.
+On conclut que $L = \F_2(\sqrt{x})$.
+Il s'ensuit que $L^2 = \F_2(\sqrt{x})^2 = \F_2^2(x) = \F_2(x) \neq L$.
+On conclut que $L$ n'est pas parfait par la proposition $3.5.8$.
+
+\end{document}
