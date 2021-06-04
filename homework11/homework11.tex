@@ -74,7 +74,18 @@ $\sqrt{x} = \frac{\sqrt{x}(x+1)}{x+1} \in \F_2(x)(\sqrt{x}(x+1))$.
 Aussi, $\F_2(x)(\sqrt{x}) = \F_2(\sqrt{x})$, car 
 $\sqrt{x} \in \F_2(x)(\sqrt{x})$ et $x, \sqrt{x} \in \F_2(\sqrt{x})$.
 On conclut que $L = \F_2(\sqrt{x})$.
-Il s'ensuit que $L^2 = \F_2(\sqrt{x})^2 = \F_2^2(x) = \F_2(x) \neq L$.
-On conclut que $L$ n'est pas parfait par la proposition $3.5.8$.
+Il s'ensuit que $L^2 = \F_2(\sqrt{x})^2 = \F_2^2(x) = \F_2(x)$,
+car pour tous
+$\sum a_i\sqrt{x}^i / \sum b_j\sqrt{x}^j \in \F_2(\sqrt{x})$,
+on a que
+\begin{equation*}
+	\left(\frac{\sum a_i\sqrt{x}^i}{\sum b_i\sqrt{x}^j}\right)^2
+	= \frac{\left(\sum a_i\sqrt{x}^i\right)^2}
+	{\left(\sum b_i\sqrt{x}^j\right)^2}
+	= \frac{\sum a_i^2 \sqrt{x}^{2i}}{\sum b_j^2\sqrt{x}^{2j}}
+	= \frac{\sum a_i^2 x^i}{\sum b_j^2x^j}
+\end{equation*}
+On conclut que $L \neq L^2$ et donc $L$
+n'est pas parfait par la proposition $3.5.8$.
 
 \end{document}
