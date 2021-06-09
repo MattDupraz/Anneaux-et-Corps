@@ -1,0 +1,100 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Gal}{\mathrm{Gal}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\car}{\mathrm{car}}
+
+\newcommand{\ts}{\textsuperscript}
+
+\author{Matthew Dupraz}
+\title{Exercice bonus 12}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1.}
+
+On va montrer que $f(x) = x^6 + x^3 + 1$ est irréductible sur $\Q$.
+Considérons le polynôme 
+\begin{align*}
+	\ev_{y+1}(f) &= (y+1)^6 + (y+1)^3 + 1\\
+	&= y^6 + 6y^5 + 15y^4 + 21y^3 + 18y^2 + 9y + 3
+\end{align*}
+Par le lemme de Gauss III, puisque c'est un polynôme primitif, il est
+irréductible sur $\Q$ ssi il l'est sur $\Z$. Ce polynôme est irréductible sur
+$\Z$, par le critère d'Eisenstein ($3$ divise tous les coefficients
+non-dominants, et $3^2$ ne divise pas le coefficient constant).
+
+Maintenant, raisonnons par l'absurde et supposons que $f$ soit réductible,
+c'est à dire qu'il existe $g, h \in \Q[x]^\times$ tels que $f = gh$.
+Alors $\ev_{y+1}(f) = \ev_{y+1}(g)\ev_{y+1}(h)$. Par irréductibilité de
+$\ev_{y+1}(f)$, l'un des facteurs est inversible, s.p.g. supposons que
+$\ev_{y+1}(g)$ le soit. Alors $\deg(\ev_{y+1}(g)) = 0$ et donc en
+particulier $\deg(g) = 0$ (en effet, si $\deg(g) = n \neq 0$, alors
+si le coefficient dominant de $g$ c'est $a_n$, il est facile à voir que
+le coefficient de $y^n$ du polynôme $\ev_{y+1}(g)$ c'est aussi $a_n$ et donc
+$\deg(\ev_{y+1}(g)) \neq 0$). Mais ceci est absurde, car $g$ est supposé
+non-inversible. On déduit que $f$ est irréductible.
+
+\subsection*{2.}
+
+Soit $\alpha$ une racine de $f$.
+On a que $x^9 - 1 = (x^6 + x^3 + 1)(x^3 - 1)$ et donc $\alpha$ est une racine
+de $x^9 - 1$ et par conséquent c'est une racine 9\ts{e} de l'unité.
+En particulier,
+l'ordre de $\alpha$ divise $9$. Mais l'ordre de $\alpha$ n'est ni 1, ni 3,
+car sinon $f(\alpha) = \alpha^6 + \alpha^3 + 1 = 3 \neq 0$. On en déduit que
+l'ordre de $\alpha$ est $9$ et donc $\alpha$ est bien une racine 9\ts{e}
+\emph{primitive} de l'unité. 
+
+\subsection*{3.}
+
+Soit $L$ le corps de décomposition de $f$ sur $\Q$. On va montrer que
+l'extension $\Q \subset L$ est galoisienne avec
+$\Gal(L/\Q) \cong (\Z/9\Z)^\times$.
+
+Comme $\alpha$ est une racine 9\ts{e} primitive de l'unitée, 
+$\alpha^k$ pour $k \in \{0, 8\}$ sont toutes les racines (distinctes) de
+$x^9 - 1$. Ainsi $L = \Q(\alpha)$ et donc puisque $f \sim m_{\alpha, \Q}$
+(car $f$ est irréductible), on a que $[L : \Q] = \deg(f) = 6$
+
+Comme $\car(\Q) = 0$, par la Proposition 3.5.8, $\Q$ est un corps parfait.
+En particulier, $\alpha$ est séparable sur $\Q$.
+Comme $L$ est un corps de décomposition de degré fiini engendré par $\alpha$,
+par le Theorème 3.6.15, $\Q \subset L$ est une extension galoisienne.
+
+On déduit par la Proposition 3.6.3 que $|\Gal(L/\Q)| = [L : \Q] = 6$.
+Soient $\phi, \psi \in \Gal(L/\Q)$, alors puisque $\phi(\alpha), \psi(\alpha)$
+sont aussi des racines de $f$, on a que
+$\phi(\alpha) = \alpha^k, \psi(\alpha) = \alpha^l$ pour un certains
+$k, l \in \{1, 2, 4, 5, 7, 8\}$. En particulier, on a que
+\begin{equation*}
+	\phi(\psi(\alpha)) = \phi(\alpha)^l = \alpha^{kl} = \psi(\alpha)^k =
+	\psi(\phi(\alpha))
+\end{equation*}
+Puisque les automorphismes de $\Gal(L/\Q)$ sont entièrement déterminés par
+l'image de $\alpha$ (car $L = \Q(\alpha)$), on déduit que
+$\psi\circ\phi = \phi\circ\psi$ et donc $\Gal(L/\Q)$ est abélien.
+
+Par aileurs, on a que $|(\Z/9\Z)^\times| = \phi(9) = 3\cdot 2 = 6$ et donc
+par le theorème de classification des groupes abéliens finis, on déduit que
+$\Gal(L/\Q) \cong \Z/3\Z \times \Z/2\Z \cong (\Z/9\Z)^\times$.
+
+\subsection*{4.}
+
+Soit $H$ le sous groupe de $\Gal(L/\Q) \cong \Z/3\Z \times \Z/2\Z$ d'ordre 2.
+Alors par le Théorème 3.6.12. on a que $[L : L^H] = |H| = 2$
+On a que $K \subset L^H \subset L$ et donc $[L^H : K] = 3$.
+Par le theorème fondamental de la théorie de Galois, $K \subset L^H$ est une
+extension galoisienne ssi $H$ est normal dans $\Gal(L/K)$.
+Mais $\Gal(L/K)$ est abélien, donc $H$ est normal. On a donc que
+$K \subset L^H$ est une extension galoisienne de degré $3$.
+
+\end{document}
