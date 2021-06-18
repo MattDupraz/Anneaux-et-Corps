@@ -1,0 +1,127 @@
+\documentclass[french]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{tikz-cd}
+\usepackage{float}
+
+\newtheorem*{theorem}{Théorème}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Gal}{\mathrm{Gal}}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+\title{Exercice Bonus 13}
+\author{Matt Dupraz}
+
+\begin{document}
+
+\maketitle
+
+Soit $G$ un groupe fini. On va montrer que $G$ est un groupe
+de Galois. On commence par un théorème:
+
+\begin{theorem}[Cayley]
+	Soit $G$ un groupe fini, alors il existe un monomorphisme
+	$t: G \to S(G)$.
+\end{theorem}
+\begin{proof}
+	Soit $g \in G$, on pose pour tout $x \in G$ 
+	$t(g)(x) = gx$. On a que pour tous $x, x' \in G$,
+	\begin{equation*}
+		t(g)(x) = t(g)(x') \iff gx = gx' \iff x = x'
+	\end{equation*}
+	d'où $t(g)$ est une application injective, et puisque c'est une
+	application ensembliste de $G$ dans $G$, elle est aussi
+	bijective.
+	Ainsi $t: G \to S(G)$ est bien définie et il reste à vérifier
+	que c'est un monomorphisme.
+
+	C'est un homomorphisme, car pour tous $g, h \in G$ et pour
+	tous $x \in G$, $t(gh)(x) = ghx = t(g)(hx)
+	= (t(g)\circ t(h))(x)$. Finalement, $t$ est injective, car
+	pour tout $g \in G$,
+	\begin{equation*}
+		t(g) = \id_G \iff t(g)(x) = x ~\forall x \in G
+			\iff gx = x ~\forall x \in G \iff g = e
+	\end{equation*}
+	et donc $\ker(t) = \{e\}$.
+\end{proof}
+
+Posons $n = |G|$, alors par le theorème de Cayley,
+$G$ est isomorphe à un sous-groupe de $S(G) \cong S_n$.
+Ainsi on peut 
+identifier les éléments de $G$ avec des permutations dans $S_n$.
+Soit $A := \Q[x_1, \dots, x_n]$.
+On définit alors pour tout $\sigma \in G$, l'automorphisme 
+$\phi_\sigma : A \to A$
+par $\phi_\sigma(x_i) = x_{\sigma(i)}$ pour tout
+$i \in \{1, \dots, n\}$. Il est facile à voir que c'est un
+homomorphisme d'anneaux et que son inverse est donné par
+$\phi_{\sigma^{-1}}$.
+Soit $K$ le corps de fraction de $A$, alors par
+la propriété universelle du corps de fractions, pour tout
+$\sigma \in G$, il existe un unique homomorphisme de corps
+$\psi_\sigma: K \to K$
+qui fait commuter
+le diagramme suivant:
+\begin{equation*}
+\begin{tikzcd}
+A \arrow[r, "\phi_\sigma"] \arrow[d, hook] & A \arrow[d, hook] \\
+K \arrow[r, "\psi_\sigma", dashed]         & K                
+\end{tikzcd}
+\end{equation*}
+
+On définit $H = \{\psi_\sigma: \sigma \in G\}$. On va montrer
+que $H$ est un groupe pour la composition. Soit $e \in G$
+l'élement neutre, alors on a que $\phi_e = \id_A$, et donc le
+diagramme suivant commute:
+\begin{equation*}
+\begin{tikzcd}
+	A \arrow[r, "\id_A"] \arrow[d, hook] & A \arrow[d, hook] \\
+K \arrow[r, "\psi_{e}"]         & K
+\end{tikzcd}
+\end{equation*}
+Ainsi par la partie unicité de la propriété universelle du
+corps de fractions, $\psi_e = \id_K$, et donc $H$ admet un
+élément neutre.
+
+Soient $\sigma, \tau \in G$, alors le diagramme suivant commute:
+\begin{equation*}
+\begin{tikzcd}
+A \arrow[r, "\phi_\sigma"] \arrow[d, hook] & A \arrow[d, hook] \arrow[r,"\phi_{\tau}"] & A \arrow[d, hook] \\
+K \arrow[r, "\psi_\sigma"]                 & K \arrow[r, "\psi_{\tau}"]                 & K
+\end{tikzcd}
+\end{equation*}
+De plus, on a que
+$\phi_{\tau}\circ\phi_{\sigma} = \phi_{\tau\sigma}$, et donc
+le diagramme suivant commute:
+\begin{equation*}
+\begin{tikzcd}
+	A \arrow[r, "\phi_{\tau\sigma}"] \arrow[d, hook] & A \arrow[d, hook] \\
+K \arrow[r, "\psi_{\tau}\circ\psi_\sigma"]         & K
+\end{tikzcd}
+\end{equation*}
+On conclut par la partie unicité de la
+propriété universelle du corps de fractions que
+$\psi_\tau\circ\psi_\sigma = \psi_{\tau\sigma} \in H$.
+Ainsi $H$ est stable sous composition et la composition est
+clairement associative.
+
+Finalement, pour tout $\sigma \in G$, on a que
+$\psi_\sigma \circ \psi_{\sigma^{-1}} = 
+\psi_{\sigma\sigma^{-1}} = \psi_e = \id_K$,
+et de même $\psi_{\sigma^{-1}} \circ \psi_\sigma = \id_K$.
+On a montré alors que $H$ est un groupe et, en particulier,
+$H \leq \Aut(K)$.
+
+Pour conclure, on a que pour tout $\psi_\sigma \in H$,
+$\psi_\sigma|_\Q = \phi_\sigma|_\Q = \id_\Q$, ainsi
+$H \leq \Aut_\Q(K) = \Gal(K/\Q)$.
+Donc, par le theorème fondamental de la théorie de Galois,
+$K^H \subseteq K$ est une extension galoisienne telle que 
+$\Gal(K/K^H) = H \cong G$. On conclut que $G$ est un groupe de
+Galois.
+
+\end{document}
